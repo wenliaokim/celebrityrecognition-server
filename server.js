@@ -44,7 +44,7 @@ app.post('/register', (req, res) => {
   const { username, email, password } = req.body;
   const hash = bcrypt.hashSync(password);
 
-  if (username.length && email.length && password.length) {
+  if (username && email && password) {
     db.transaction(trx => {
       trx.insert({hash: hash,username: username})
       .into('logins')
